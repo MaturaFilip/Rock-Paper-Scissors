@@ -35,7 +35,7 @@ function playRound(computer, player) {
     if (computer === player) {
         draw_counter += 1
         return "Draw"
-        
+
     } else if (computer === "rock" && player === "paper") {
         win_counter += 1
         return "You won! Paper beats rock"
@@ -111,8 +111,7 @@ function game() {
                 ${finalResults}`)
 }
 
-game()
-    // play 5 games
-    // report user at the end (save the score)
 
-// 
+// play the game!
+game()
+
