@@ -10,7 +10,7 @@ body {
 
 li,
 a,
-button {
+.btn-0 {
   font-family: "Times New Roman", Times, serif;
   font-weight: 500;
   font-size: 16px;
@@ -36,7 +36,7 @@ header h1 {
   color: #edf0f1;
 }
 
-button {
+.btn-0 {
   padding: 9px 25px;
   background-color: rgba(0, 136, 169, 1);
   border: none;
@@ -46,6 +46,39 @@ button {
   font-size: 30px;
 }
 
-button:hover {
+.btn-0:hover {
   background-color: rgba(0, 136, 169, 0.8);
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 100px;
+}
+
+.container button {
+  font-size: 50px;
+  padding: 30px;
+  height: 350px;
+  width: 350px;
+  cursor: pointer;
+  background: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.container button:hover {
+  border: 2px solid rgba(255 255, 255, 0.8);
+  color: rgba(255 255, 255, 0.6);
+}
+
+.score {
+  color: #fff;
+  font-size: 50px;
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+  padding-top: 60px;
 }
