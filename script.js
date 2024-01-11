@@ -26,13 +26,37 @@ function getComputerChoice() {
   }
 }
 
-const clickRock = document.querySelector(".btn-1");
-const clickPaper = document.querySelector(".btn-2");
-const clickScissors = document.querySelector(".btn-3");
+// SHOW and HIDE table with buttons
+const bigBox = document.querySelector(".big-box");
+const btn0 = document.querySelector(".btn-0");
+const btn05 = document.querySelector(".btn-05");
 
-console.log(clickRock);
-console.log(clickPaper);
-console.log(clickScissors);
+const show = () => {
+  bigBox.style.display = "block";
+};
+
+const playGame = () => {
+  btn0.style.display = "none";
+  btn05.style.display = "block";
+};
+
+const exitGame = () => {
+  btn0.style.display = "block";
+  btn05.style.display = "none";
+};
+
+const hide = () => {
+  bigBox.style.display = "none";
+};
+
+bigBox.setAttribute("style", "display: none"); // hide board by default
+btn05.setAttribute("style", "display: none"); // hide this button by default
+
+// click Play! -> board show, click Exit! -> board hide
+btn0.addEventListener("click", show);
+btn0.addEventListener("click", playGame);
+btn05.addEventListener("click", exitGame);
+btn05.addEventListener("click", hide);
 
 // playRound function that plays a single round
 // playerSelection and computerSelection

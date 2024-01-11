@@ -10,7 +10,8 @@ body {
 
 li,
 a,
-.btn-0 {
+.btn-0,
+.btn-05 {
   font-family: "Times New Roman", Times, serif;
   font-weight: 500;
   font-size: 16px;
@@ -36,7 +37,8 @@ header h1 {
   color: #edf0f1;
 }
 
-.btn-0 {
+.btn-0,
+.btn-05 {
   padding: 9px 25px;
   background-color: rgba(0, 136, 169, 1);
   border: none;
