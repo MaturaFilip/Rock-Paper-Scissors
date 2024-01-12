@@ -58,6 +58,28 @@ btn0.addEventListener("click", playGame);
 btn05.addEventListener("click", exitGame);
 btn05.addEventListener("click", hide);
 
+// Play game
+const chooseRock = document.querySelector(".btn-1");
+const choosePaper = document.querySelector(".btn-2");
+const chooseScissors = document.querySelector(".btn-3");
+
+const chooseR = function () {
+  alert(playRound(getComputerChoice(), "rock"));
+};
+
+const chooseP = function () {
+  alert(playRound(getComputerChoice(), "paper"));
+};
+
+const chooseS = function () {
+  alert(playRound(getComputerChoice(), "scissors"));
+};
+chooseRock.addEventListener("click", chooseR);
+choosePaper.addEventListener("click", chooseP);
+chooseScissors.addEventListener("click", chooseS);
+
+console.log(getComputerChoice());
+
 // playRound function that plays a single round
 // playerSelection and computerSelection
 function playRound(computer, player) {
