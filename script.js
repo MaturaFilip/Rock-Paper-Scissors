@@ -10,6 +10,8 @@ let lose_counter = 0;
 // draw counter
 let draw_counter = 0;
 
+let round_counter = 0;
+
 // getComputerChoice function
 function getComputerChoice() {
   // return randomly (not cheating) Rock, Paper or Scissors
@@ -38,11 +40,23 @@ const show = () => {
 const playGame = () => {
   btn0.style.display = "none";
   btn05.style.display = "block";
+  resultsShow.textContent = "";
+  resultsShow.style.display = "block";
 };
 
 const exitGame = () => {
   btn0.style.display = "block";
   btn05.style.display = "none";
+  resultsShow.style.display = "none";
+  win_counter = win_counter - win_counter;
+  lose_counter = lose_counter - lose_counter;
+  draw_counter = draw_counter - draw_counter;
+  round_counter = round_counter - round_counter;
+
+  losesNumber.textContent = `Loses: ${lose_counter}`;
+  winsNumber.textContent = `Wins: ${win_counter}`;
+  roundNumber.textContent = `Round: ${round_counter}`;
+  drawNumber.textContent = `Draws: ${draw_counter}`;
 };
 
 const hide = () => {
@@ -63,49 +77,95 @@ const chooseRock = document.querySelector(".btn-1");
 const choosePaper = document.querySelector(".btn-2");
 const chooseScissors = document.querySelector(".btn-3");
 
+const resultsShow = document.querySelector(".round-score");
+// resultsShow.setAttribute(
+//   "style",
+//   "color: #fff; text-align: center;font-size: 60px; padding-top: 20px"
+// );
+
 const chooseR = function () {
-  alert(playRound(getComputerChoice(), "rock"));
+  playRound(getComputerChoice(), "rock");
 };
 
 const chooseP = function () {
-  alert(playRound(getComputerChoice(), "paper"));
+  playRound(getComputerChoice(), "paper");
 };
 
 const chooseS = function () {
-  alert(playRound(getComputerChoice(), "scissors"));
+  playRound(getComputerChoice(), "scissors");
 };
+
 chooseRock.addEventListener("click", chooseR);
 choosePaper.addEventListener("click", chooseP);
 chooseScissors.addEventListener("click", chooseS);
 
-console.log(getComputerChoice());
+// score board!
+
+const roundNumber = document.querySelector(".round");
+const losesNumber = document.querySelector(".loses");
+const winsNumber = document.querySelector(".wins");
+const drawNumber = document.querySelector(".draws");
 
 // playRound function that plays a single round
 // playerSelection and computerSelection
 function playRound(computer, player) {
   // Return string that declares the winner of the round
   if (computer === player) {
-    draw_counter += 1;
-    return "Draw";
+    resultsShow.setAttribute(
+      "style",
+      "color: #fff; text-align: center;font-size: 60px; padding-top: 20px"
+    );
+    resultsShow.textContent = "Draw!";
+    draw_counter = draw_counter + 1;
   } else if (computer === "rock" && player === "paper") {
-    win_counter += 1;
-    return "You won! Paper beats rock";
-  } else if (computer === "paper" && player === "scissors") {
-    win_counter += 1;
-    return "You won! Scissors beats paper";
+    resultsShow.setAttribute(
+      "style",
+      "color: green; text-align: center;font-size: 60px; padding-top: 20px"
+    );
+    resultsShow.textContent = "You won!";
+    win_counter = win_counter + 1;
+  } else if (
+    computer === "paper" &&
+    player === "scissors; text-align: center;font-size: 60px; padding-top: 20px"
+  ) {
+    resultsShow.setAttribute("style", "color: green");
+    resultsShow.textContent = "You won!";
+    win_counter = win_counter + 1;
   } else if (computer === "scissors" && player === "rock") {
-    win_counter += 1;
-    return "Your won! Rock beats scissors";
+    resultsShow.setAttribute(
+      "style",
+      "color: green; text-align: center;font-size: 60px; padding-top: 20px"
+    );
+    resultsShow.textContent = "You won!";
+    win_counter = win_counter + 1;
   } else if (computer === "rock" && player === "scissors") {
-    lose_counter += 1;
-    return "You lose! Rock beats scissors";
+    resultsShow.setAttribute(
+      "style",
+      "color: red; text-align: center;font-size: 60px; padding-top: 20px"
+    );
+    resultsShow.textContent = "You lose!";
+    lose_counter = lose_counter + 1;
   } else if (computer === "paper" && player === "rock") {
-    lose_counter += 1;
-    return "You lose! Paper beats rock!";
+    resultsShow.setAttribute(
+      "style",
+      "color: red; text-align: center;font-size: 60px; padding-top: 20px"
+    );
+    resultsShow.textContent = "You lose!";
+    lose_counter = lose_counter + 1;
   } else if (computer === "scissors" && player === "paper") {
-    lose_counter += 1;
-    return "You lose! Scissors beats paper!";
+    resultsShow.setAttribute(
+      "style",
+      "color: red; text-align: center;font-size: 60px; padding-top: 20px"
+    );
+    resultsShow.textContent = "You lose!";
+    lose_counter = lose_counter + 1;
   }
+  round_counter = round_counter + 1;
+
+  losesNumber.textContent = `Loses: ${lose_counter}`;
+  winsNumber.textContent = `Wins: ${win_counter}`;
+  roundNumber.textContent = `Round: ${round_counter}`;
+  drawNumber.textContent = `Draws: ${draw_counter}`;
 }
 
 // playerSelection
@@ -113,36 +173,22 @@ function playRound(computer, player) {
 //
 
 // game function
-function game() {
-  // 5 rounds -> with for loop
-  for (i = 0; i < 5; i++) {
-    // ask player for input and translate it to lower case
-    let player = prompt("Rock, Paper or Scissors? ").toLowerCase();
-
-    // check proper input
-    if (player == "paper" || player == "rock" || player == "scissors") {
-      // execute if the input is in correct
-      alert(playRound(getComputerChoice(), player));
-
-      // Tell the user that input was wrong and lower the i to add more rounds
-    } else {
-      alert("Wrong input");
-      i -= 1;
-    }
-  }
-
-  // print the final score after 5 rounds
-  let finalResults;
-  if (win_counter > lose_counter) {
-    finalResults = "You are the total winner!";
-  } else if (lose_counter > win_counter) {
-    finalResults = "You are such a loser!";
-  } else {
-    finalResults = "No one wins!";
-  }
-}
-
-// play the game!
-// game()
-
-// DOM
+// function game() {
+//   // 5 rounds -> with for loop
+//
+//   // roundNumber.textContent = [i];
+//   losesNumber.textContent = `Loses: ${lose_counter}`;
+//   winsNumber.textContent = `Wins: ${win_counter}`;
+//   roundNumber.textContent = `Round: ${round_counter}`;
+//   drawNumber.textContent = `Draws: ${draw_counter}`;
+//
+//   // print the final score after 5 rounds
+//   let finalResults;
+//   if (win_counter > lose_counter) {
+//     finalResults = "You are the total winner!";
+//   } else if (lose_counter > win_counter) {
+//     finalResults = "You are such a loser!";
+//   } else {
+//     finalResults = "No one wins!";
+//   }
+// }

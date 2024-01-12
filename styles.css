@@ -84,3 +84,7 @@ header h1 {
   gap: 100px;
   padding-top: 60px;
 }
+
+.round-score {
+  height: 89px;
+}
